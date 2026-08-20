@@ -118,10 +118,7 @@ public class Main {
     }
 
 
-    public static void buscarPaciente(
-            paciente[] pacientes,
-            int qtdPacientes,
-            Scanner teclado) {
+    public static void buscarPaciente(paciente[] pacientes, int qtdPacientes, Scanner teclado) {
 
         System.out.println("\n===== BUSCAR PACIENTE =====");
 
@@ -155,12 +152,7 @@ public class Main {
         }
     }
 
-    public static int cadastroConsulta(
-            consulta[] consultas,
-            int qtdConsultas,
-            paciente[] pacientes,
-            int qtdPacientes,
-            Scanner teclado) {
+    public static int cadastroConsulta(consulta[] consultas, int qtdConsultas, paciente[] pacientes, int qtdPacientes, Scanner teclado) {
 
         if (qtdConsultas >= consultas.length) {
 
@@ -183,10 +175,7 @@ public class Main {
 
         for (int i = 0; i < qtdPacientes; i++) {
 
-            System.out.println(
-                    (i + 1) + " - " +
-                            pacientes[i].getNome()
-            );
+            System.out.println((i + 1) + " - " + pacientes[i].getNome());
         }
 
         System.out.print("Digite o número do paciente: ");
@@ -195,8 +184,7 @@ public class Main {
         teclado.nextLine();
 
 
-        if (escolhaPaciente < 1 ||
-                escolhaPaciente > qtdPacientes) {
+        if (escolhaPaciente < 1 || escolhaPaciente > qtdPacientes) {
 
             System.out.println("Paciente inválido!");
 
@@ -204,14 +192,29 @@ public class Main {
         }
 
 
-        paciente pacienteEscolhido =
-                pacientes[escolhaPaciente - 1];
+        paciente pacienteEscolhido = pacientes[escolhaPaciente - 1];
 
-        System.out.println(
-                "\nPaciente selecionado: " +
-                        pacienteEscolhido.getNome()
-        );
+        System.out.println("\nPaciente selecionado: " + pacienteEscolhido.getNome());
 
+
+        System.out.print("Digite a data da consulta (dd/mm/aaaa): ");
+        String dataConsulta = teclado.nextLine();
+
+        int consultasNoDia = 0;
+        int  limiteConsultasDia=10;
+
+        for (int i = 0; i < qtdConsultas; i++) {
+
+            if (consultas[i].getDataConsulta().equals(dataConsulta)) {
+                consultasNoDia++;
+            }
+        }
+        if (consultasNoDia >= limiteConsultasDia) {
+
+            System.out.println("\nEssa data já atingiu o limite de " + limiteConsultasDia + " consultas!");
+
+            return qtdConsultas;
+        }
 
         System.out.print("Digite o tipo da consulta: ");
         String tipoConsulta = teclado.nextLine();
@@ -220,17 +223,24 @@ public class Main {
         double valorConsulta = teclado.nextDouble();
 
         System.out.print("Digite o horário da consulta: ");
-        double horarioConsulta = teclado.nextDouble();
+        String horarioConsulta = teclado.nextLine();
+        for (int i = 0; i < qtdConsultas; i++) {
+
+            boolean mesmaData = consultas[i].getDataConsulta().equals(dataConsulta);
+
+            boolean mesmoHorario = consultas[i].gethorarioConsulta().equals(horarioConsulta);
+
+
+            if (mesmaData==true && mesmoHorario==true) {
+                System.out.println("\nERRO: Já existe uma consulta");
+                System.out.println("nesse horário nessa data!");
+                return qtdConsultas;
+            }
+        }
 
         teclado.nextLine();
 
-
-        consulta consulta1 = new consulta(
-                tipoConsulta,
-                valorConsulta,
-                horarioConsulta,
-                pacienteEscolhido
-        );
+        consulta consulta1 = new consulta(tipoConsulta, valorConsulta, horarioConsulta,dataConsulta, pacienteEscolhido);
 
         consultas[qtdConsultas] = consulta1;
 
@@ -242,9 +252,7 @@ public class Main {
     }
 
 
-    public static void listarConsultas(
-            consulta[] consultas,
-            int qtdConsultas) {
+    public static void listarConsultas(consulta[] consultas, int qtdConsultas) {
 
         System.out.println("\n===== LISTA DE CONSULTAS =====");
 
@@ -259,25 +267,15 @@ public class Main {
 
             System.out.println("\nConsulta " + (i + 1));
 
-            System.out.println(
-                    "Paciente: " +
-                            consultas[i].getPaciente().getNome());
+            System.out.println("Paciente: " + consultas[i].getPaciente().getNome());
 
-            System.out.println(
-                    "Telefone: " +
-                            consultas[i].getPaciente().getTelefone());
+            System.out.println("Telefone: " + consultas[i].getPaciente().getTelefone());
 
-            System.out.println(
-                    "Tipo: " +
-                            consultas[i].getTipoConsulta());
+            System.out.println("Tipo: " + consultas[i].getTipoConsulta());
 
-            System.out.println(
-                    "Valor: R$ " +
-                            consultas[i].getValorConsulta());
+            System.out.println("Valor: R$ " + consultas[i].getValorConsulta());
 
-            System.out.println(
-                    "Horário: " +
-                            consultas[i].gethorarioConsulta());
+            System.out.println("Horário: " + consultas[i].gethorarioConsulta());
 
             System.out.println("--------------------------");
         }

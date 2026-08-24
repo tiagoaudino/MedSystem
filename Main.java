@@ -96,9 +96,7 @@ public class Main {
     }
 
 
-    public static void listarPacientes(
-            paciente[] pacientes,
-            int qtdPacientes) {
+    public static void listarPacientes(paciente[] pacientes, int qtdPacientes) {
 
         System.out.println("\n===== LISTA DE PACIENTES =====");
 
@@ -219,24 +217,18 @@ public class Main {
         System.out.print("Digite o tipo da consulta: ");
         String tipoConsulta = teclado.nextLine();
 
-        System.out.print("Digite o valor da consulta: R$ ");
-        double valorConsulta = teclado.nextDouble();
-
         System.out.print("Digite o horário da consulta: ");
         String horarioConsulta = teclado.nextLine();
         for (int i = 0; i < qtdConsultas; i++) {
 
-            boolean mesmaData = consultas[i].getDataConsulta().equals(dataConsulta);
-
-            boolean mesmoHorario = consultas[i].gethorarioConsulta().equals(horarioConsulta);
-
-
-            if (mesmaData==true && mesmoHorario==true) {
+            if (consultas[i].getDataConsulta().equals(dataConsulta) && consultas[i].gethorarioConsulta().equals(horarioConsulta)) {
                 System.out.println("\nERRO: Já existe uma consulta");
                 System.out.println("nesse horário nessa data!");
                 return qtdConsultas;
             }
         }
+        System.out.print("Digite o valor da consulta: R$ ");
+        double valorConsulta = teclado.nextDouble();
 
         teclado.nextLine();
 

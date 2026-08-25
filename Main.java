@@ -269,6 +269,8 @@ public class Main {
 
             System.out.println("Horário: " + consultas[i].gethorarioConsulta());
 
+            System.out.println("Data: " + consultas[i].getDataConsulta());
+
             System.out.println("--------------------------");
         }
     }

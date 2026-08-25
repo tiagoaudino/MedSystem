@@ -22,6 +22,8 @@ Validação de pacientes cadastrados
 -Arrays de objetos
 
 Este projeto está em sua versão 1.0 e poderá receber novas funcionalidades futuramente
+
+
 <img width="205" height="188" alt="image" src="https://github.com/user-attachments/assets/d09ffbb0-1c56-44cd-a7db-d73d48f95436" />
 <img width="326" height="166" alt="image" src="https://github.com/user-attachments/assets/2c399c90-8a8b-44a0-a440-54dcac76bab5" />
 <img width="325" height="290" alt="image" src="https://github.com/user-attachments/assets/42368349-b0b2-4105-8cd1-e744ca43f36e" />
@@ -30,7 +32,3 @@ Este projeto está em sua versão 1.0 e poderá receber novas funcionalidades fu
 
 
 
-
-
-Arrays de objetos
-Scanner para entrada de dados
